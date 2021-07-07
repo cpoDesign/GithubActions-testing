@@ -42,3 +42,6 @@ jobs:
           # Gives the release a custom name. Defaults to tag name
           # name: # optional
           #files: # optional
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
