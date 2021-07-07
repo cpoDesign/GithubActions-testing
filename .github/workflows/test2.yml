@@ -13,6 +13,8 @@ on: push
 #     tags:
 #       - 'v*.*.*'
 
+env:
+  GITHUB_TOKEN: ${{ secrets.apiKey }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -58,8 +60,6 @@ jobs:
             files: |
                 Release.txt
 
-          env:
-            GITHUB_TOKEN: ${{ secrets.apiKey }}
         #- name: Release
           # uses: softprops/action-gh-release@v1
           # #if: startsWith(github.ref, 'refs/tags/')
