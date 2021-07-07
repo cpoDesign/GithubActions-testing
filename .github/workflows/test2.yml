@@ -41,6 +41,8 @@ jobs:
           run: echo ${{ github.sha }} > Release.txt
         - name: Test
           run: cat Release.txt
+        - name: Create release notes
+          uses: smartlyio/github-release-notes-action@v1.0.0      
         - name: Release
           uses: softprops/action-gh-release@v1
           #if: startsWith(github.ref, 'refs/tags/')
@@ -50,14 +52,7 @@ jobs:
               LICENSE
           env:
             GITHUB_TOKEN: ${{ secrets.apiKey }}
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: smartlyio/github-release-notes-action@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      
       ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
 
