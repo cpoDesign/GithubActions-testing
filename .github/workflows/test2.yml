@@ -50,7 +50,7 @@ jobs:
               LICENSE
           env:
             GITHUB_TOKEN: ${{ secrets.apiKey }}
-          publish:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
