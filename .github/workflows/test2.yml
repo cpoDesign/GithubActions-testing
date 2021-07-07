@@ -50,6 +50,7 @@ jobs:
             files: |
               Release.txt
               LICENSE
+            token: ${{ secrets.apiKey }}
           env:
             GITHUB_TOKEN: ${{ secrets.apiKey }}
       
