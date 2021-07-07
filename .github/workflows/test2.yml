@@ -59,7 +59,7 @@ jobs:
                 Release.txt
 
           env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.apiKey }}
         #- name: Release
           # uses: softprops/action-gh-release@v1
           # #if: startsWith(github.ref, 'refs/tags/')
