@@ -42,17 +42,35 @@ jobs:
         - name: Test
           run: cat Release.txt
         - name: Create release notes
-          uses: smartlyio/github-release-notes-action@v1.0.0      
-        - name: Release
-          uses: softprops/action-gh-release@v1
-          #if: startsWith(github.ref, 'refs/tags/')
+          uses: smartlyio/github-release-notes-action@v1.0.0    
+
+        - name: GH Release
+          # You may pin to the exact commit or the version.
+          # uses: softprops/action-gh-release@b7e450da2a4b4cb4bfbae528f788167786cfcedf
+          uses: softprops/action-gh-release@v0.1.5
           with:
+            # Note-worthy description of changes in release
+            body: releases
+            # Path to load note-worthy description of changes in release from
+            # body_path: # optional
+            # Gives the release a custom name. Defaults to tag name
+            # name: # optional
             files: |
-              Release.txt
-              LICENSE
-            token: ${{ secrets.apiKey }}
+                Release.txt
+            #     LICENSE
+            #   token: ${{ secrets.apiKey }}
           env:
-            GITHUB_TOKEN: ${{ secrets.apiKey }}
+            GITHUB_TOKEN: ${{ secrets.apiKey }}  
+        #- name: Release
+          # uses: softprops/action-gh-release@v1
+          # #if: startsWith(github.ref, 'refs/tags/')
+          # with:
+          #   files: |
+          #     Release.txt
+          #     LICENSE
+          #   token: ${{ secrets.apiKey }}
+          # env:
+          #   GITHUB_TOKEN: ${{ secrets.apiKey }}
       
       ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
