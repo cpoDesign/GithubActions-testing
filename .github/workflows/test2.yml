@@ -13,8 +13,7 @@ on: push
 #     tags:
 #       - 'v*.*.*'
 
-env:
-  GITHUB_TOKEN: ${{ secrets.apiKey }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -45,7 +44,8 @@ jobs:
           run: cat Release.txt
         - name: Create release notes
           uses: smartlyio/github-release-notes-action@v1.0.0    
-
+          env:
+            GITHUB_TOKEN: ${{ secrets.apiKey }}
         - name: GH Release
         # You may pin to the exact commit or the version.
         # uses: softprops/action-gh-release@b7e450da2a4b4cb4bfbae528f788167786cfcedf
@@ -59,7 +59,8 @@ jobs:
             # name: # optional
             files: |
                 Release.txt
-
+          env:
+            GITHUB_TOKEN: ${{ secrets.apiKey }}
         #- name: Release
           # uses: softprops/action-gh-release@v1
           # #if: startsWith(github.ref, 'refs/tags/')
