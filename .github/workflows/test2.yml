@@ -26,6 +26,7 @@ jobs:
             echo "GITHUB_SHA: ${GITHUB_SHA}"
             echo "GITHUB_REF: ${GITHUB_REF}"
         - name: custom setting command
+          run:  |
             echo "myConfiguration:${{secrets.apiKey}}"
      
     
