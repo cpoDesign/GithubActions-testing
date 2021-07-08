@@ -27,7 +27,7 @@ jobs:
 #        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            sql/*.sql            
+            SQL/*.sql
             *.md
             release.zip
             LICENSE
