@@ -11,8 +11,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Generate Changelog
-        run: echo "# Good things have arrived" > ${{ github.workflow }}-CHANGELOG.txt
+      - name: Generate Release notes
+        run: |
+          npm install github-release-notes -g
+          gren release --token=${{ secrets.APIKEY }}
+          gren changelog --generate --override --changelog-filename=${{ github.workflow }}-RELEASE_NOTES.md
+      # - name: Generate Changelog
+      #   run: echo "# Good things have arrived" > ${{ github.workflow }}-CHANGELOG.txt
       - name: Create release_build directory
         run: mkdir release_build
       - name: Copy all SQL to SQL inside release_build
@@ -26,7 +31,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          body_path: ${{ github.workflow }}-CHANGELOG.txt
+          body_path: ${{ github.workflow }}-RELEASE_NOTES.md
           files: |
             *.md
             release.zip
