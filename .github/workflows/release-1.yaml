@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
@@ -23,9 +26,9 @@ jobs:
       - name: Create release_build directory
         run: mkdir release_build
       - name: Copy all SQL to SQL inside release_build
-        run:  cp -R SQL/ release_build/SQL_$GITHUB_REF/
+        run:  cp -R SQL/ release_build/SQL_${{steps.tag.outputs.tag}}/
       - name: Copy all webapp build
-        run:  cp -R webapp/build/ release_build/webapp_$GITHUB_REF/
+        run:  cp -R webapp/build/ release_build/webapp_${{steps.tag.outputs.tag}}/
 
 ## https://www.cyberciti.biz/faq/how-to-zip-a-folder-in-ubuntu-linux/
       - name: ZIP release_build
