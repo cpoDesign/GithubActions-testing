@@ -18,8 +18,8 @@ jobs:
       - name: Generate Release notes
         run: |
           npm install github-release-notes -g
-          gren release --token=${{ secrets.APIKEY }}
-          gren changelog --generate --override --changelog-filename=${{ github.workflow }}-RELEASE_NOTES.md
+          export GREN_GITHUB_TOKEN=${{ secrets.APIKEY }}          
+          gren changelog --generate --override --changelog-filename=RELEASE_NOTES.md
       # - name: Generate Changelog
       #   run: echo "# Good things have arrived" > ${{ github.workflow }}-CHANGELOG.txt
       - name: Create release_build directory
