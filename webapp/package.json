@@ -1,0 +1,35 @@
+{
+    "name": "frontend",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@cypress/browserify-preprocessor": "^3.0.1"
+    },
+    "scripts": {
+        "build": "react-scripts build",
+        "eject": "react-scripts eject",
+        "lint:styles": "stylelint 'src/**/*.{ts,tsx}'",
+        "lint:ts": "eslint src --ext .ts --ext .tsx --ext .js --ext .jsx",
+        "start": "react-scripts start",
+        "test:cypress:headless": "cypress run --headless --config video=false -e \"TAGS=not @ignore\"",
+        "test:cypress": "cypress run --browser chrome -e \"TAGS=not @ignore\"",
+        "test": "react-scripts test"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not ie <= 10",
+            "not op_mini all",
+            "ie >= 11",
+            "chrome >= 80"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version",
+            "ie >= 11"
+        ]
+    },
+    "proxy": "http://localhost:1080"
+}
