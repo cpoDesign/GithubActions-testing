@@ -22,4 +22,5 @@ jobs:
           SQL
           webapp/build/
           api/bin/
+          test.md
           !path/**/*.tmp
