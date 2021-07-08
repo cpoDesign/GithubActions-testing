@@ -15,21 +15,23 @@ jobs:
         run: echo ${{ github.sha }} > Release.txt
       - name: Test
         run: cat Release.txt
-#SRC: https://github.com/marketplace/actions/zip-release        
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          filename: 'release.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig'
+      - name: Create release_build directory
+        run: mkdir release_build
+      - name: Copy all SQL to SQL inside release_build
+        run:  cp -R SQL/ release_build/SQL/
+## https://www.cyberciti.biz/faq/how-to-zip-a-folder-in-ubuntu-linux/
+      - name: ZIP release_build
+        run:  |
+          zip -r release.zip release_build/
       - name: Release
 #       Ref: https://github.com/softprops/action-gh-release      
         uses: softprops/action-gh-release@v1
-#        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            SQL/*.sql
             *.md
             release.zip
             LICENSE
         env:
           GITHUB_TOKEN: ${{ secrets.APIKEY }}
+#            SQL/*.sql
