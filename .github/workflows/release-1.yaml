@@ -20,13 +20,15 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
-      
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PACKAGEJSON_DIR:  'webapp'
-
+      - name: Update version in package.json
+        # You may pin to the exact commit or the version.
+        # uses: maks-stupak/gh-action-bump-version@68745b36f06428d175b5aec775a41540ac1788aa
+        uses: maks-stupak/gh-action-bump-version@v7.1.5
+        with:
+          # Prefix that is used for the git tag
+          tag-prefix: v
+          # Custom dir to the package
+          PACKAGEJSON_DIR: webapp
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
