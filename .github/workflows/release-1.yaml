@@ -29,7 +29,7 @@ jobs:
           files: |
             sql/            
             *.md
-            !path/**/*.tmp
+            release.zip
             LICENSE
         env:
           GITHUB_TOKEN: ${{ secrets.APIKEY }}
