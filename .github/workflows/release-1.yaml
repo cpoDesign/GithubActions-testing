@@ -22,12 +22,20 @@ jobs:
         id: tag
         uses: dawidd6/action-get-tag@v1
         
+      - name: Get tag semantic version
+        uses: bhowell2/github-substring-action@1
+        id: two
+        with:
+          value: ${{steps.tag.outputs.tag}}
+          index_of_str: "v"
+    # steps.one.outputs.substring = 'c123' -- note length_from_start is ignored        
+        
       - name: Update package.json version
         uses: jossef/action-set-json-field@v1
         with:
           file: webapp/package.json
           field: version
-          value: ${{steps.tag.outputs.tag}}
+          value: ${{steps.one.outputs.substring}}
           
       - name: Set up Node.js
         uses: actions/setup-node@v1
