@@ -7,6 +7,7 @@ on: push
 
 
 ### here below is trigger for tags
+####  https://docs.github.com/en/actions/reference/events-that-trigger-workflows#example-using-a-list-of-events
 # on:
 #   # Triggers the workflow on tag pushed into repository
 #   push:
@@ -53,6 +54,11 @@ jobs:
                LICENSE
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+        - uses: actions/upload-artifact@v2
+          with:
+            name: my-sql
+            path: |
+              SQL/
       
       ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
