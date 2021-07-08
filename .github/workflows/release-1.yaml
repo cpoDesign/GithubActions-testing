@@ -27,7 +27,7 @@ jobs:
         with:
           file: webapp/package.json
           field: version
-          value: ${{ steps.semantic_release_info.outputs.git_tag }}
+          value: ${{steps.tag.outputs.tag}}
           
       - name: Set up Node.js
         uses: actions/setup-node@v1
