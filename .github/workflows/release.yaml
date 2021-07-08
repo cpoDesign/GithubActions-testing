@@ -1,5 +1,5 @@
 name: Publish Release
-on: [push]
+# on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,4 +10,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.APIKEY }}
       with:
-        args: MyReleaseMessage
+        args: "Name of the Release"
