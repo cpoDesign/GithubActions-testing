@@ -2,7 +2,7 @@ on:
   milestone:
     types: [closed]
 
-name: artefacts and release notes
+name: Release triggered by closing milestone
 jobs:
   create-release-notes:
     runs-on: ubuntu-latest
