@@ -18,7 +18,7 @@ jobs:
         with:
           file: webapp/package.json
           field: version
-          value: echo "${TAG-Version}"
+          value: ${{TAG-Version}}
 
 #      - name: Commit package files
 #        run: |
