@@ -9,18 +9,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      TAG-Version: 1.0.3
+      TAG-Version: v1.0.35
       
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Get tag semantic version
+        uses: bhowell2/github-substring-action@1
+        id: two
+        with:
+          value: ${{env.TAG-Version}}
+          index_of_str: "v"
+      # steps.one.outputs.substring = '1.0.35'
         
       - name: Update package.json version
         uses: jossef/action-set-json-field@v1
         with:
           file: webapp/package.json
           field: version
-          value: ${{env.TAG-Version}}
+          value: ${{steps.one.outputs.substring}}
 
       - name: Upload package.json
         uses: actions/upload-artifact@v2
