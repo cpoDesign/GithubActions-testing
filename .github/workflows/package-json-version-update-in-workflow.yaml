@@ -3,8 +3,9 @@ name: Package.JSON version set through workflow
 
 on:
   push
- env:
+env:
     TAG-Version: 1.0.3
+    
 jobs:
   build:
     runs-on: ubuntu-latest
