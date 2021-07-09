@@ -3,12 +3,14 @@ name: Package.JSON version set through workflow
 
 on:
   push
-env:
-    TAG-Version: 1.0.3
+
     
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TAG-Version: 1.0.3
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -18,7 +20,7 @@ jobs:
         with:
           file: webapp/package.json
           field: version
-          value: ${{TAG-Version}}
+          value: ${{env.TAG-Version}}
 
 #      - name: Commit package files
 #        run: |
