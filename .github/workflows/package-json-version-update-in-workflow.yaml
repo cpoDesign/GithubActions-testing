@@ -1,0 +1,25 @@
+
+name: Package.JSON version set through workflow
+
+on:
+  push
+ env:
+    TAG-Version: 1.0.3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Update package.json version
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: webapp/package.json
+          field: version
+          value: $TAG-Version
+          
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 14
