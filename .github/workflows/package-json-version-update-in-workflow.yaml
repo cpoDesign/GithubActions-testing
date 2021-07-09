@@ -14,10 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Get tag semantic version
-        uses: bhowell2/github-substring-action
-        id: two
+      
+      - uses: bhowell2/github-substring-action@latest
+        id: one
         with:
           value: ${{env.TAG-Version}}
           index_of_str: "v"
