@@ -22,25 +22,25 @@ jobs:
           field: version
           value: ${{env.TAG-Version}}
 
-#      - name: Commit package files
-#        run: |
-#          git config --local user.email "action@github.com"
-#          git config --local user.name "GitHub Action"
-#          git add -A
-#          git commit -m "docs(): bumping release $TAG-Version"
-#          git tag TAG-Version
-        
-#      - name: Push changes
-#        uses: ad-m/github-push-action@v0.6.0
-#        with:
-#          github_token: ${{ github.token }}
-#          tags: false
-
       - name: Upload package.json
         uses: actions/upload-artifact@v2
         with:
           name: frontend
           path: webapp/package.json
+      
+      - name: Commit package files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "docs(): bumping release $TAG-Version"
+          git tag TAG-Version
+       
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.APIKEY }}
+          tags: false
       
 #      - name: Set up Node.js
 #        uses: actions/setup-node@v1
